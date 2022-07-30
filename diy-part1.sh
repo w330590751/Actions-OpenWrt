@@ -17,18 +17,12 @@
 #
 
 echo '添加pass dependencies'
-sed -i '$a src-git passpack https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
+sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 echo '=========Add feed source OK!========='
 
 echo '添加bypass软件源'
-sed -i '$a src-git bypass https://github.com/kiddin9/openwrt-bypass' feeds.conf.default
-cat feeds.conf.default |grep bypass
+sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 echo '=========Add bypass source OK!========='
-
-echo '添加dnsfilter'
-rm -rf package/lean/luci-app-dnsfilter 
-git clone https://github.com/kiddin9/luci-app-dnsfilter package/lean/luci-app-dnsfilter 
-echo '=========Add dnsfilter source OK!========='
 
 echo '添加jerrykuku的argon-mod主题'
 rm -rf package/lean/luci-theme-argon  
@@ -53,8 +47,3 @@ sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bc
 # sed -n '140,146p' target/linux/bcm53xx/image/Makefile
 echo '=========Remove other devices of bcm53xx OK!========='
 
-#1.'asus_dhd24' 2.'ac88u_20' 3.'69027'
-firmware='ac88u_20'
-echo '替换K3的无线驱动为asus-dhd24'
-wget -nv https://github.com/yangxu52/Phicomm-k3-Wireless-Firmware/raw/master/brcmfmac4366c-pcie.bin.${firmware} -O package/lean/k3-brcmfmac4366c-firmware/files/lib/firmware/brcm/brcmfmac4366c-pcie.bin
-echo '=========Replace k3 wireless firmware OK!========='
