@@ -16,18 +16,13 @@
 #limitations under the License.
 #
 
-echo '添加pass dependencies'
+echo '添加软件源'
 sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 echo '=========Add feed source OK!========='
 
 echo '添加bypass软件源'
 sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 echo '=========Add bypass source OK!========='
-
-echo '添加jerrykuku的argon-mod主题'
-rm -rf package/lean/luci-theme-argon  
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/lean/luci-theme-argon
-echo '=========Add argon-mod OK!========='
 
 echo '添加lwz322的K3屏幕插件'
 rm -rf package/lean/luci-app-k3screenctrl
